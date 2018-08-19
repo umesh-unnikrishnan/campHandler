@@ -1,5 +1,64 @@
 <!-- Header -->
 <md-toolbar style="background-color: rgb(33, 37, 41);    color: rgb(153, 153, 153);" md-scroll-shrink>
-    <div class="md-toolbar-tools"><md-icon class="clickable" ng_bind="'view_headline'" hide-gt-md ng-click="toggleLeft()"></md-icon> <div style="width: calc( 100% - 45px );">RDTF</div></div>
+    <div class="md-toolbar-tools"><md-icon class="clickable" ng_bind="'view_headline'" hide-gt-md ng-click="toggleLeft()"></md-icon> <div style="width: calc( 100% - 45px );">{{loggedInUser.campName}}</div></div>
 </md-toolbar>
 <!-- Header -->
+<div class="row zero-margin" style="margin-top:10px;">
+    <h4>Camp Details</h4>
+    <div layout-gt-sm="row" class="col m8 s12">
+        <md-input-container style="margin:10px;max-width:150px;" flex-gt-sm>
+            <label>Camp Name</label>
+            <input ng-model="campDetails.campName">
+        </md-input-container>
+        <md-input-container style="margin:10px;max-width:150px;" flex-gt-sm>
+            <label>Head Count</label>
+            <input ng-model="campDetails.headCount" type="number">
+        </md-input-container>
+        <md-input-container style="margin:10px;max-width:150px;" flex-gt-sm>
+            <label>Male</label>
+            <input ng-model="campDetails.male" type="number">
+        </md-input-container>
+        <md-input-container style="margin:10px;max-width:150px;" flex-gt-sm>
+            <label>Female</label>
+            <input ng-model="campDetails.female" type="number">
+        </md-input-container>
+        <md-input-container style="margin:10px;max-width:150px;" flex-gt-sm>
+            <label>Kids</label>
+            <input ng-model="campDetails.kids" type="number">
+        </md-input-container>
+    </div>
+    <div layout-gt-sm="row" class="col m4 hide-on-small-only">
+    </div>
+</div>
+<div class="row zero-margin" style="margin-top:10px;">
+    <h4>Requirements</h4>
+    <div layout-gt-sm="row" class="col s12">
+        <md-input-container style="margin:10px;max-width:150px;" flex-gt-sm>
+            <label>Item Name</label>
+            <input ng-model="tempRequirement.itemName">
+        </md-input-container>
+        <md-input-container style="margin:10px;max-width:150px;" flex-gt-sm>
+            <label>Quantity</label>
+            <input ng-model="tempRequirement.quantity" type="number" min=0>
+        </md-input-container>
+        <md-input-container style="margin:10px;margin-top: 26px;margin-bottom: 0px;max-width:150px;" class="md-block" flex-gt-sm>
+            <label>Unit</label>
+            <md-select ng-model="tempRequirement.unit">
+                <md-option ng-repeat="unit in units" value="{{unit}}" >
+                    {{unit}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container style="margin:10px;margin-top: 26px;margin-bottom: 0px;max-width:150px;" class="md-block" flex-gt-sm>
+            <label>Severity</label>
+            <md-select ng-model="tempRequirement.severity">
+                <md-option ng-repeat="severity in severityList" value="{{severity}}">
+                    {{severity}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+        <md-button style=" line-height: 30px;height: 30px;">Publish to Public</md-button>
+    </div>
+    <div layout-gt-sm="row" class="col m4 hide-on-small-only">
+    </div>
+</div>
