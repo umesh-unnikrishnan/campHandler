@@ -1,135 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="application">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>RDTF</title>
+        <link href="css/animate.css" rel="stylesheet" />
+        <link href="css/angular-material.min.css" rel="stylesheet" />
+        <link href="css/materialize.min.css" rel="stylesheet" />
+        <link href="css/mdi/css/materialdesignicons.css"  rel="stylesheet" />
+		<link href="css/material-icons.css" rel="stylesheet" />
+        <link href="css/angular-carousel.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+    <body ng-controller="mainController" class="ng-cloak">
+        <!-- Header -->
+        <md-toolbar style="background-color: rgb(33, 37, 41);    color: rgb(153, 153, 153);" md-scroll-shrink>
+            <div class="md-toolbar-tools"><md-icon class="clickable" ng_bind="'view_headline'" hide-gt-md ng-click="toggleLeft()"></md-icon> <div style="width: calc( 100% - 45px );">RDTF</div></div>
+        </md-toolbar>
+        <!-- Header -->
+        <section layout="row" flex>
+            <md-sidenav class="md-sidenav-left" style="width:210px;" md-component-id="district" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+                <md-toolbar class="md-theme-indigo">
+                    <h1 class="md-toolbar-tools" style="background-color: rgb(33, 37, 41);    color: rgb(153, 153, 153);">Select District</h1>
+                </md-toolbar>
+                <md-content layout-padding ng-controller="LeftCtrl" style="height: calc( 100% - 75px );">
+                    <md-button style="display:block;width: 100%;margin:0px;line-height:20px" ng-click="openCampDetails(district);" ng-repeat="district in districtList">{{district}}</md-button>
+                </md-content>
+            </md-sidenav>
+            <md-sidenav class="md-sidenav-left" style="width:210px;" md-component-id="camp" md-disable-backdrop md-whiteframe="4">
+                <md-toolbar class="md-theme-indigo">
+                    <h1 class="md-toolbar-tools clickable" style="background-color: rgb(33, 37, 41);    color: rgb(153, 153, 153);" ng-click="closeCampDetails();"><<  {{selectedDistrict}}</h1>
+                    <h1 class="md-toolbar-tools" style="background-color: rgb(33, 37, 41);    color: rgb(153, 153, 153);"><span ng-show="selectedCamp">{{selectedCamp}}</span><span ng-hide="selectedCamp">Select Camp</span></h1>
+                </md-toolbar>
+                <md-content layout-padding ng-controller="LeftCtrl" style="    height: calc( 100% - 134px );">
+                    <md-button style="display:block;width: 100%;margin:0px;line-height:20px" ng-click="showCampDetails(camp)" ng-repeat="camp in campList">{{camp}}</md-button>
+                </md-content>
+            </md-sidenav>
+            <md-content flex>
+                <state-details ng-if="pageFlag == 'stateDetails'"></state-details>
+                <district-details ng-if="pageFlag == 'districtDetails'"></district-details>
+                <camp-details ng-if="pageFlag == 'campDetails'" input="input"></camp-details>
+            </md-content>
+        </section>
+    <script type="text/javascript" src="js/common/jquery.min.js"></script>
+    <script type="text/javascript" src="js/common/materialize.min.js"></script>
+    <script type="text/javascript" src="js/common/angular.js"></script>
+    <script type="text/javascript" src="js/common/angular-cookies.js"></script>
+    <script type="text/javascript" src="js/common/angular-messages.min.js"></script>
+    <script type="text/javascript" src="js/common/angular-material.min.js"></script>
+    <script type="text/javascript" src="js/common/angular-materialize.min.js"></script>
+    <script type="text/javascript" src="js/common/angular-animate.js"></script>
+    <script type="text/javascript" src="js/common/angular-route.js"></script>
+    <script type="text/javascript" src="js/common/Chart.bundle.js"></script>
+    <script type="text/javascript" src="js/common/angular-chart.min.js"></script>
+    <script type="text/javascript" src="js/common/angular-aria.min.js"></script>
+	<script type="text/javascript" src="js/common/angular-ui.min.js"></script>
 
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Simple Sidebar - Start Bootstrap Template</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/simple-sidebar.css" rel="stylesheet">
-	<style>
-	</style>
-
-</head>
-
-<body>
-
-    <div id="wrapper">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li class="sidebar-brand">
-                    <a href="#">
-                        Select District
-                    </a>
-                </li>
-                <li>
-                    <a href="#1">Alappuzha</a>
-                </li>
-                <li>
-                    <a href="#2">Ernakulam</a>
-                </li>
-                <li>
-                    <a href="#3">Idukki</a>
-                </li>
-                <li>
-                    <a href="#4">Kannur</a>
-                </li>
-                <li>
-                    <a href="#5">Kasaragod</a>
-                </li>
-                <li>
-                    <a href="#6">Kollam</a>
-                </li>
-                <li>
-                    <a href="#7">Kottayam</a>
-                </li>
-				<li>
-                    <a href="#8">Kozhikode</a>
-                </li>
-				<li>
-                    <a href="#9">Malappuram</a>
-                </li>
-				<li>
-                    <a href="#10">Palakkad</a>
-                </li>
-				<li>
-                    <a href="#11">Pathanamthitta</a>
-                </li>
-				<li>
-                    <a href="#12">Thiruvananthapuram</a>
-                </li>
-				<li>
-                    <a href="#13">Thrissur</a>
-                </li>
-				<li>
-                    <a href="#14">Wayanad</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-		
-			<div class="container-fluid">
-			  <h6><a href="#menu-toggle" id="menu-toggle"><<</a> Selected Alappuzha</h6>
-			  
-			  
-			  <div class="row">
-			  <div class="col-md-3" style="background-color:white;">	
-					  <p>Clik on camp name to see details</p>			  
-					  <ul class="list-group list-group-flush">
-						  <li class="list-group-item"><a href="#" class="btn btn-default btn-sm" role="button">Camp 1 - Kuttanadu</a></li>
-						  <li class="list-group-item"><a href="#" class="btn btn-default btn-sm" role="button">Camp 1 - Kuttanadu</a></li>
-						  <li class="list-group-item"><a href="#" class="btn btn-default btn-sm" role="button">Camp 1 - Kuttanadu</a></li>
-						  <li class="list-group-item"><a href="#" class="btn btn-default btn-sm" role="button">Camp 1 - Kuttanadu</a></li>
-						  <li class="list-group-item"><a href="#" class="btn btn-default btn-sm" role="button">Camp 1 - Kuttanadu</a></li>
-						</ul>
-				</div>
-				<div class="col-md-9" style="background-color:white;">
-					
-				</div>
-			  </div>
-			 
-			</div>
-    
-            <!--<div class="container-fluid">
-                <h1>Simple Sidebar</h1>
-                <p>This template has a responsive menu toggling system. The menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will appear/disappear. On small screens, the page content will be pushed off canvas.</p>
-                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                <a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-            </div>-->
-        </div>
-        <!-- /#page-content-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Menu Toggle Script -->
-    <script>
-	
-	$("#wrapper").toggleClass("toggled");
-	
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
+    <script type="text/javascript" src="js/app/application.js"></script>
+    <script type="text/javascript" src="js/app/mainController.js"></script>
+    <script type="text/javascript" src="components/campDetails/campDetails.js"></script>
+    <script type="text/javascript" src="components/requirementTile/requirementTile.js"></script>
 
 </body>
-
 </html>

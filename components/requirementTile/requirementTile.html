@@ -1,0 +1,63 @@
+<div class="card">
+    <div class="row zero-margin" style="    background: {{$ctrl.color}};color: ghostwhite;">
+        <div class="col l12 m12 s12">
+            <h5>#{{$ctrl.index+1}} {{$ctrl.requirement.title}}</h5>
+            <div>Last Updated on : {{$ctrl.requirement.lastUpdatedOn | date : 'hh:mm a , MMM d, yyyy'}}</div>
+        </div>
+    </div>
+    <div class="row zero-margin">
+        <div class="col l6 m6 s12">
+            <h6>Quantity Required</h6>
+            <h6>{{$ctrl.requirement.quantity}} {{$ctrl.requirement.unit}}</h6>
+        </div>
+        <div class="col l6 m6 s12">
+            <h6>Severity</h6>
+            <h6>{{$ctrl.requirement.severity}}</h6>
+        </div>
+        <div class="col l6 m6 s12">
+            <h6>Status</h6>
+            <h6>{{$ctrl.requirement.status}}</h6>
+        </div>
+        <div class="col l6 m6 s12 clickable">
+            <h5 ng-click="$ctrl.donateNow($event);">DONATE NOW</h5>
+        </div>
+    </div>
+</div>
+
+<!-- Donate Now Dialog -->
+<div class="hidden">
+    <div class="md-dialog-container overlay" id="donateNow">
+        <md-dialog class="medium" layout-padding>
+            <div class="row header zero-margin">
+                <div class="col s12">
+                    <h4 class="blue-text">Donate Now</h4>
+                </div>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block" style="margin:10px;" flex-gt-sm>
+                    <label>Name</label>
+                    <input ng-model="$ctrl.donationDetails.name">
+                </md-input-container>
+                <md-input-container class="md-block" style="margin:10px;" flex-gt-sm>
+                    <label>Phone Number</label>
+                    <input ng-model="$ctrl.donationDetails.phone">
+                </md-input-container>
+            </div>
+            <div layout-gt-sm="row">
+                <md-input-container class="md-block"  style="margin:10px;"flex-gt-sm>
+                    <label>Units to Donate</label>
+                    <input ng-model="$ctrl.donationDetails.unit" type="number">
+                </md-input-container>
+                <md-input-container class="md-block" style="margin:10px;" flex-gt-sm>
+                    <label>Remarks</label>
+                    <textarea ng-model="$ctrl.donationDetails.remarks" md-maxlength="150" rows="2" md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
+            <div class="modal-footer">
+                <a ng-click="$ctrl.hideDialog()" class="modal-action modal-close waves-effect btn-flat back">Close</a>
+                <a ng-click="$ctrl.hideDialog()" class="modal-action modal-close waves-effect btn-flat back">Update</a>
+            </div>
+        </md-dialog>
+    </div>
+</div>
+<!-- Donate Now Dialog -->

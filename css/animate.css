@@ -1,0 +1,21 @@
+.content-area {
+}
+
+.show-hide {
+  transition: all linear 0.2s;
+}
+.sample-show-hide.ng-hide {
+  opacity: 0;
+    height :0;
+}
+.clickable {
+    cursor: pointer;
+}
+.menudemoBasicUsage .md-menu-demo {
+    padding: 24px;
+    padding-top: 30px;
+}
+
+.menudemoBasicUsage .menu-demo-container {
+  min-height: 400px; }
+
