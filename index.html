@@ -14,53 +14,26 @@
         <link href="css/style.css" rel="stylesheet" />
     </head>
     <body ng-controller="mainController" class="ng-cloak">
-        <!-- Header -->
-        <md-toolbar style="background-color: rgb(33, 37, 41);    color: rgb(153, 153, 153);" md-scroll-shrink>
-            <div class="md-toolbar-tools"><md-icon class="clickable" ng_bind="'view_headline'" hide-gt-md ng-click="toggleLeft()"></md-icon> <div style="width: calc( 100% - 45px );">RDTF</div></div>
-        </md-toolbar>
-        <!-- Header -->
-        <section layout="row" flex>
-            <md-sidenav class="md-sidenav-left" style="width:210px;" md-component-id="district" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
-                <md-toolbar class="md-theme-indigo">
-                    <h1 class="md-toolbar-tools" style="background-color: rgb(33, 37, 41);    color: rgb(153, 153, 153);">Select District</h1>
-                </md-toolbar>
-                <md-content layout-padding ng-controller="LeftCtrl" style="height: calc( 100% - 75px );">
-                    <md-button style="display:block;width: 100%;margin:0px;line-height:20px" ng-click="openCampDetails(district);" ng-repeat="district in districtList">{{district}}</md-button>
-                </md-content>
-            </md-sidenav>
-            <md-sidenav class="md-sidenav-left" style="width:210px;" md-component-id="camp" md-disable-backdrop md-whiteframe="4">
-                <md-toolbar class="md-theme-indigo">
-                    <h1 class="md-toolbar-tools clickable" style="background-color: rgb(33, 37, 41);    color: rgb(153, 153, 153);" ng-click="closeCampDetails();"><<  {{selectedDistrict}}</h1>
-                    <h1 class="md-toolbar-tools" style="background-color: rgb(33, 37, 41);    color: rgb(153, 153, 153);"><span ng-show="selectedCamp">{{selectedCamp}}</span><span ng-hide="selectedCamp">Select Camp</span></h1>
-                </md-toolbar>
-                <md-content layout-padding ng-controller="LeftCtrl" style="    height: calc( 100% - 134px );">
-                    <md-button style="display:block;width: 100%;margin:0px;line-height:20px" ng-click="showCampDetails(camp)" ng-repeat="camp in campList">{{camp}}</md-button>
-                </md-content>
-            </md-sidenav>
-            <md-content flex>
-                <state-details ng-if="pageFlag == 'stateDetails'"></state-details>
-                <district-details ng-if="pageFlag == 'districtDetails'"></district-details>
-                <camp-details ng-if="pageFlag == 'campDetails'" input="input"></camp-details>
-            </md-content>
-        </section>
-    <script type="text/javascript" src="js/common/jquery.min.js"></script>
-    <script type="text/javascript" src="js/common/materialize.min.js"></script>
-    <script type="text/javascript" src="js/common/angular.js"></script>
-    <script type="text/javascript" src="js/common/angular-cookies.js"></script>
-    <script type="text/javascript" src="js/common/angular-messages.min.js"></script>
-    <script type="text/javascript" src="js/common/angular-material.min.js"></script>
-    <script type="text/javascript" src="js/common/angular-materialize.min.js"></script>
-    <script type="text/javascript" src="js/common/angular-animate.js"></script>
-    <script type="text/javascript" src="js/common/angular-route.js"></script>
-    <script type="text/javascript" src="js/common/Chart.bundle.js"></script>
-    <script type="text/javascript" src="js/common/angular-chart.min.js"></script>
-    <script type="text/javascript" src="js/common/angular-aria.min.js"></script>
-	<script type="text/javascript" src="js/common/angular-ui.min.js"></script>
+        <div ng-view="" class="details-page-no-scroll"></div>
+        <script type="text/javascript" src="js/common/jquery.min.js"></script>
+        <script type="text/javascript" src="js/common/materialize.min.js"></script>
+        <script type="text/javascript" src="js/common/angular.js"></script>
+        <script type="text/javascript" src="js/common/angular-cookies.js"></script>
+        <script type="text/javascript" src="js/common/angular-messages.min.js"></script>
+        <script type="text/javascript" src="js/common/angular-material.min.js"></script>
+        <script type="text/javascript" src="js/common/angular-materialize.min.js"></script>
+        <script type="text/javascript" src="js/common/angular-animate.js"></script>
+        <script type="text/javascript" src="js/common/angular-route.js"></script>
+        <script type="text/javascript" src="js/common/Chart.bundle.js"></script>
+        <script type="text/javascript" src="js/common/angular-chart.min.js"></script>
+        <script type="text/javascript" src="js/common/angular-aria.min.js"></script>
+        <script type="text/javascript" src="js/common/angular-ui.min.js"></script>
 
-    <script type="text/javascript" src="js/app/application.js"></script>
-    <script type="text/javascript" src="js/app/mainController.js"></script>
-    <script type="text/javascript" src="components/campDetails/campDetails.js"></script>
-    <script type="text/javascript" src="components/requirementTile/requirementTile.js"></script>
+        <script type="text/javascript" src="js/app/application.js"></script>
+        <script type="text/javascript" src="js/app/mainController.js"></script>
+        <script type="text/javascript" src="js/app/dashboardController.js"></script>
+        <script type="text/javascript" src="components/campDetails/campDetails.js"></script>
+        <script type="text/javascript" src="components/requirementTile/requirementTile.js"></script>
 
-</body>
+    </body>
 </html>
